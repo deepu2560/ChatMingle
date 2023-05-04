@@ -1,15 +1,9 @@
 const mongoose = require("mongoose");
 
-const messageSchema = new mongoose.Schema(
+const groupSchema = new mongoose.Schema(
   {
-    isGroup: { type: Boolean, required: false, default: false },
-    senderId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "users",
-      required: true,
-    },
-    chatId: { type: String, require: true },
-    content: { type: String, require: true },
+    group_name: { type: Boolean, required: true },
+    bio: { type: String, require: true },
   },
   {
     versionKey: false,
@@ -17,4 +11,4 @@ const messageSchema = new mongoose.Schema(
   },
 );
 
-module.exports = mongoose.model("message", messageSchema);
+module.exports = mongoose.model("group", groupSchema);

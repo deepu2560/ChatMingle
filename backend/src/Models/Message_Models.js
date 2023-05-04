@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 
 const messageSchema = new mongoose.Schema(
   {
-    isGroup: { type: Boolean, required: false, default: false },
-    senderId: {
+    senderID: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "users",
       required: true,
