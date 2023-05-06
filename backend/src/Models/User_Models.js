@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema(
     full_name: { type: String, required: true },
     email_id: { type: String, required: true },
     password: { type: String, required: true },
-    chats: [{ type: String, required: false }],
   },
   {
     versionKey: false,
