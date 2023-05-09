@@ -4,6 +4,7 @@ const { Server } = require("socket.io");
 require("dotenv").config();
 
 const connect = require("./src/Configs/db");
+const MessageModel = require("./src/Models/Message_Models");
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -24,7 +25,9 @@ io.on("connection", (socket) => {
   console.log("Connected");
 
   socket.on("newMessage", (data) => {
-    console.log(data);
+    let message = MessageModel.create(data);
+
+    socket.emit(message);
   });
 });
 
