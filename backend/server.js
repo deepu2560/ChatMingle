@@ -4,12 +4,15 @@ const { Server } = require("socket.io");
 require("dotenv").config();
 
 const connect = require("./src/Configs/db");
-const MessageModel = require("./src/Models/Message_Models");
+const AuthController = require("./src/Controllers/authControllers");
 
 const app = express();
 const port = process.env.PORT || 8080;
 
 app.use(cors());
+app.use(express.json());
+
+app.use("/auth", AuthController);
 
 const server = app.listen(port, async () => {
   try {
@@ -23,22 +26,16 @@ const io = new Server(server, { cors: { origin: "*" } });
 
 io.on("connection", (socket) => {
   console.log("Connected");
+  socket.custom_id = "abc";
 
   socket.on("newMessage", (data) => {
-    let message = MessageModel.create(data);
+    console.log({ id: socket.custom_id, message: data });
+    // let message = data;
 
-    socket.emit(message);
+    socket.emit({ id: socket.custom_id, message: data });
   });
-});
 
-io.on("disconnect", (socket) => {
-  console.log("disconnected");
-});
-
-app.get("/", async (req, res) => {
-  try {
-    res.send("Hello World");
-  } catch (error) {
-    console.log("==>> Home route server error.");
-  }
+  socket.on("disconnect", (socket) => {
+    console.log("disconnected");
+  });
 });
