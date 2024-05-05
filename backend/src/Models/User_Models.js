@@ -22,7 +22,7 @@ userSchema.pre("save", function (next) {
   return next();
 });
 
-userSchema.method.checkPassword = function (password) {
+userSchema.methods.checkPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
 
