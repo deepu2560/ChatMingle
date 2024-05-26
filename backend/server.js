@@ -28,11 +28,11 @@ io.on("connection", (socket) => {
   console.log("Connected");
   socket.custom_id = "abc";
 
-  socket.on("newMessage", (data) => {
+  socket.on("message", (data) => {
     console.log({ id: socket.custom_id, message: data });
-    // let message = data;
+    let message = data;
 
-    socket.emit({ id: socket.custom_id, message: data });
+    socket.emit("received", message);
   });
 
   socket.on("disconnect", (socket) => {
