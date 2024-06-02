@@ -12,7 +12,9 @@ const messageSchema = new mongoose.Schema(
       ref: "users",
       required: true,
     },
-    message: { type: String, required: true },
+    content: { type: String, required: true },
+    read: { type: Boolean, required: false, default: false },
+    receiver_status: { type: Boolean, required: false, default: false },
   },
   {
     versionKey: false,
