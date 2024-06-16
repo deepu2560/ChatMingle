@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1> Hello world</h1>
+      <h1 className="text-center text-black "> Hello world</h1>
       <button onClick={() => setTheme(!theme)}>toggle</button>
     </div>
   );
