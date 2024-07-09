@@ -74,7 +74,9 @@ io.on("connection", (socket) => {
       if (status) {
         var onlineStatusDeletationTimmer = setTimeout(async () => {
           try {
-            await deleteOnlineStatus(socket.id);
+            let finalStatus = await deleteOnlineStatus(socket.id);
+
+            socket.emit("online_status", finalStatus);
           } catch (error) {
             console.log(
               "error at user_online_status endpoint in socket",
