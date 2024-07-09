@@ -8,6 +8,5 @@ channel = "stable-23_11"
 run = ["sh", "-c", "npm run dev"]
 
 [[ports]]
-localPort = 5173
-externalPort = 3000
-exposeLocalhost = true
+localPort = 8080
+externalPort = 8000
